@@ -24,3 +24,6 @@ burada
 
 
 {{< include Vernam.qmd >}}
+
+{{< include stream-cipher.qmd >}}
+

@@ -1,0 +1,8 @@
+## Kesintisiz/Akış Şifreleme (Stream cipher)
+
+Bilişim sözlüğü stream ciphers kelimesini kesintisiz şifreleme olarak vermiş.
+
+
+
+
+
