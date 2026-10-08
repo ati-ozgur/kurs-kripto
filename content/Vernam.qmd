@@ -5,6 +5,8 @@
 - İlk güvenli şifreleme algoritmasıdır.
 - Anahtar (key) mesaj uzunluğu kadar bir rastgele bit sayısıdır.
 
+### Vernam Örnek ikili çalışma
+
 | Velmar Örnek |  |
 |---|---|
 | mesaj:      | 0  1  1  0  1  1  0  |
