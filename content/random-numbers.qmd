@@ -1,0 +1,15 @@
+# Rastgele sayılar
+
+Kripto işlemlerinde normal random sayı üretmek yerine kriptoloji için yazılmış random sayı üretme kütüphaneleri kullanılmalıdır.
+Python için **secrets** modulü bu amaçla tanımlanmıştır.
+
+
+{{< include tables/table-python-secrets-members.md >}}
+
+
+Diğer dillerde benzer sınıflar bulunmaktadır.
+
+- Java:  java.security.SecureRandom 
+- C#/.NET: System.Security.Cryptography.RandomNumberGenerator
+
+
