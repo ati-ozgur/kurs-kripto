@@ -48,3 +48,9 @@
 
 - Shannon 1949 yılında $$|K| \geq |M| $$ durumunda güvenliliği kanıtlamıştır.
 - yani eğer anahtar uzunluğunuz mesaj uzunluğundan fazla ise.
+
+### XKCD Anahtar güvenliği
+
+[XKCD Security 538](https://xkcd.com/538/)
+
+![](images/crypto-key-security.png)
