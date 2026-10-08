@@ -8,6 +8,7 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - content/simetrik-sifreler.qmd
     - summary.qmd
     - references.qmd
 

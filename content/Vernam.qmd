@@ -1,0 +1,12 @@
+## Vernam 
+
+- 1917 yılında önerilmiştir.
+- Tek kullanımlık şifre anahtarı (One time padding)
+- İlk güvenli şifreleme algoritmasıdır.
+- Anahtar (key) mesaj uzunluğu kadar bir rastgele bit sayısıdır.
+
+
+
+
+
+
