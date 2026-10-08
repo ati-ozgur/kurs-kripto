@@ -35,3 +35,16 @@
 
 ```{.python include="src/vernam_ornek.py" code-line-numbers="true"}
 ```
+
+
+### Vernam 1917 güçlü yönler
+
+- çok hızlı şifreleme/deşifreleme
+- ama yazı kadar uzun anahtar ihtiyacı çok problemli.
+- Birde adı üstünde, bu anahtarın sadece 1 kere kullanılması durumunda güvenli.
+
+
+### Teorik güvence
+
+- Shannon 1949 yılında $$|K| \geq |M| $$ durumunda güvenliliği kanıtlamıştır.
+- yani eğer anahtar uzunluğunuz mesaj uzunluğundan fazla ise.
