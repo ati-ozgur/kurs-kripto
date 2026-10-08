@@ -2,12 +2,15 @@ project:
   type: book
   preview:
       port: 4200
+filters:
+  - include-code-files
 book:
   title: "Kriptoloji Giris"
   author: "Atilla Özgür"
   date: today
   date-format: "YYYY-MM-DD"
   cover-image: cover.png
+
   chapters:
     - index.qmd
     - intro.qmd

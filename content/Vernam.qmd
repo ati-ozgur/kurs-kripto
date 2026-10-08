@@ -5,6 +5,28 @@
 - İlk güvenli şifreleme algoritmasıdır.
 - Anahtar (key) mesaj uzunluğu kadar bir rastgele bit sayısıdır.
 
+### Terminoloji
+
+- E (encrypt)
+- D (decrypt)
+- K (key, anahtar)
+- M (Mesaj)
+- C (Cipher, şifrelenmiş)
+
+
+### Çalışması
+
+
+- $ C=E(K,M) = K⊕M$
+- $ M=D(K,C) = K⊕C$
+
+### XOR Doğruluk Tablosu
+
+
+{{< include tables/xor-dogruluk-tablosu.md >}}
+
+
+
 ### Vernam Örnek ikili çalışma
 
 | Velmar Örnek |  |
@@ -16,3 +38,7 @@
 
 
 
+### Python kod örneği
+
+```{.python include="src/vernam_ornek.py" code-line-numbers="true"}
+```
