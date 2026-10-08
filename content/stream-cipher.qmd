@@ -4,5 +4,16 @@ Bilişim sözlüğü stream ciphers kelimesini kesintisiz şifreleme olarak verm
 
 
 
+### Quiz
+
+Bir akış şifreleme yöntemi (stream cipher) kusursuz gizliliğe sahip olabilir mi?
+
+a) Evet, eğer PRG gerçekten "güvenliyse"
+b) Hayır, kusursuz gizliliğe sahip şifreleme yöntemleri yoktur
+c) Evet, her şifreleme yöntemi kusursuz gizliliğe sahiptir
+d) Hayır, çünkü anahtar mesajdan daha kısadır
+
+
+
 
 
