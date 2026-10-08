@@ -1,3 +1,26 @@
 # Simetrik Şifreler
 
+## Terminoloji
+
+- E (encrypt, şifreleme)
+- D (decrypt, çözme, deşifreleme)
+- K (key, anahtar)
+- M (Message, mesaj)
+- C (Cipher, şifrelenmiş)
+
+
+## Simetrik Şifreler Tanım
+
+**Tanım**: $K,M,C$ üzerinde tanımlanan  algoritmalar çiftidir.
+
+$$ E: K * M -> C $$
+
+$$ D: K * C -> M $$
+
+burada
+
+- E genellikle rastgeleleştirilmiştir.
+- D her zaman deterministiktir (tutarlıdır).
+
+
 {{< include Vernam.qmd >}}
