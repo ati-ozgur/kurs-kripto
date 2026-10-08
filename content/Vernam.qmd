@@ -5,8 +5,12 @@
 - İlk güvenli şifreleme algoritmasıdır.
 - Anahtar (key) mesaj uzunluğu kadar bir rastgele bit sayısıdır.
 
-
-
+| Velmar Örnek |  |
+|---|---|
+| mesaj:      | 0  1  1  0  1  1  0  |
+| XOR         |  |
+| anahtar:    | 1  0  1  1  0  0  0  |
+| Sifrelenmis | 1  1  0  1  1  1  0  | 
 
 
 
