@@ -1,0 +1,3 @@
+# Hafta 01
+
+[Dan Benoh giriş yansısı](https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/slides/01-intro-v2-annotated.pdf)

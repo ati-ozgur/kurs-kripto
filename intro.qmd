@@ -1,5 +1,6 @@
-# Introduction
+# Giriş
 
-This is a book created from markdown and executable code.
+Ders içeriği  [Dan Boneh, Stanford University Online Cryptography Course](https://crypto.stanford.edu/~dabo/courses/OnlineCrypto) sadeleştirilmiş halidir.
 
-See @knuth84 for additional discussion of literate programming.
+
+
