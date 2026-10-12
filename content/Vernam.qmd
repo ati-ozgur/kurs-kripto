@@ -47,7 +47,7 @@
 ### Teorik güvence
 
 - Shannon 1949 yılında $$|K| \geq |M| $$ durumunda güvenliliği kanıtlamıştır.
-- yani eğer anahtar uzunluğunuz mesaj uzunluğundan fazla ise.
+- yani eğer anahtar uzunluğunuz mesaj uzunluğunuza eşit veya ondan fazla ise.
 
 ### XKCD Anahtar güvenliği
 
