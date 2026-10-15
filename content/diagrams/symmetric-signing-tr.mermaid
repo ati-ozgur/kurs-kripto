@@ -1,0 +1,18 @@
+```{mermaid}
+flowchart TD
+    Key["🔑 Simetrik Anahtar"]
+    Data["Veri"]
+    Sign["Sayısal İmza"]
+    Signature["İmzalanmış Veri"]
+
+    Key --> Sign
+    Data --> Sign
+    Sign --> Signature
+
+    classDef default fill:#fff,stroke:#333,stroke-width:1px;
+    classDef keyStyle fill:#ffff99,stroke:#99cc00,stroke-width:2px;
+    classDef signatureStyle fill:#b3b3b3,stroke:#333,stroke-width:1px;
+
+    class Key keyStyle;
+    class Signature signatureStyle;
+```
