@@ -25,5 +25,9 @@ burada
 
 {{< include Vernam.qmd >}}
 
+{{< include key-security-tr.qmd >}}
+
+
+
 {{< include stream-cipher.qmd >}}
 
