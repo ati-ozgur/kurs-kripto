@@ -8,6 +8,11 @@
 - M (Message, mesaj)
 - C (Cipher, şifrelenmiş)
 
+## Simetrik Şifreleme Diyagram
+
+{{< include diagrams/symmetric-encryption-tr.mermaid >}}
+
+
 
 ## Simetrik Şifreler Tanım
 
@@ -21,6 +26,10 @@ burada
 
 - E genellikle rastgeleleştirilmiştir.
 - D her zaman deterministiktir (tutarlıdır).
+
+
+
+
 
 
 {{< include Vernam.qmd >}}

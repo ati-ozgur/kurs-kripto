@@ -1,0 +1,23 @@
+```{mermaid}
+flowchart LR
+    Key["🔑 Symmetric Key"]
+    
+    Data1["Veri"] --> Encrypt["Şifrele"]
+    Encrypt --> EncryptedData["Şifrelenmiş veri"]
+    EncryptedData --> Decrypt["Deşifrele"]
+    Decrypt --> Data2["Veri"]
+
+    %% Shared junction point to mimic the single line branching down
+    Key --> Fork(("Hem şifreleme hem deşifrelemede kullanılır"))
+    Fork --> Encrypt
+    Fork --> Decrypt
+
+    classDef default fill:#fff,stroke:#333,stroke-width:1px;
+    classDef keyStyle fill:#ffff99,stroke:#99cc00,stroke-width:2px;
+    classDef encryptedStyle fill:#b3b3b3,stroke:#333,stroke-width:1px;
+    classDef forkStyle fill:none,stroke:none;
+
+    class Key keyStyle;
+    class EncryptedData encryptedStyle;
+    class Fork forkStyle;
+```
