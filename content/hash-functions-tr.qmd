@@ -34,19 +34,41 @@ https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility
 
 
 
-## Tek yön (One way) fonksiyonlar
+## Tek yönlü (One way) fonksiyonlar
 
+Kriptografide tek yönlü fonksiyon, ileri yönde hesaplanması kolay ancak tersine çevrilmesi (hesaplama açısından) zor olan bir fonksiyondur; bu özelliği onu veri güvenliği ve kimlik doğrulama gibi alanlarda kullanışlı kılar. 
+
+**Tanımı**
+
+Kriptografide tek yönlü fonksiyon, bir yönde hesaplanması kolay, ancak tersine çevrilmesi zor olan matematiksel bir fonksiyondur. 
+Bu özellik, tek yönlü fonksiyonları veri koruma ve kimlik doğrulama dahil olmak üzere çeşitli güvenlik uygulamaları için vazgeçilmez kılar.
+
+Temel Özellikler
+
+Hesaplanması Kolaydır: Bir girdi verildiğinde, çıktıyı hesaplamak oldukça basittir.
+Tersine Çevrilmesi Zordur: Bir çıktı verildiğinde, orijinal girdiyi belirlemek hesaplama açısından imkansıza yakındır (pratik olarak mümkün değildir).
 
 
 {{< include tables/table-one-way-function-example-tr.md >}}
 
+**Tek Yönlü Fonksiyonların Uygulamaları**
 
-
+- Veri Bütünlüğü: Verilerin değiştirilmediğinden emin olunması.
+	* Dosya bütünlüğü doğrulama (yazılım indirmeleri için sağlama toplamları/checksum'lar).
+	* Dijital İmzalar: Mesajların gerçekliğinin doğrulanması.
+- Veri tekilleştirme
+	* Sürüm kontrol sistemleri (commit hash'leri için SHA-1 kullanan Git).
+	* Bulut depolamada tekilleştirme (deduplication).
+- Parola Saklama
+ 
 
 
 
 {{< include diagrams/hash-functions1.mermaid >}}
 
 
+### Doğum günü paradoksu
+
+https://statisticsfundamentals.com/calculators/birthday-paradox/
 
 
