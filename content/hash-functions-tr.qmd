@@ -45,8 +45,11 @@ Bu özellik, tek yönlü fonksiyonları veri koruma ve kimlik doğrulama dahil o
 
 Temel Özellikler
 
-Hesaplanması Kolaydır: Bir girdi verildiğinde, çıktıyı hesaplamak oldukça basittir.
-Tersine Çevrilmesi Zordur: Bir çıktı verildiğinde, orijinal girdiyi belirlemek hesaplama açısından imkansıza yakındır (pratik olarak mümkün değildir).
+- Hesaplanması Kolaydır: Bir girdi verildiğinde, çıktıyı hesaplamak oldukça basittir.
+- Tersine Çevrilmesi Zordur: Bir çıktı verildiğinde, orijinal girdiyi belirlemek hesaplama açısından imkansıza yakındır (pratik olarak mümkün değildir).
+
+
+
 
 
 {{< include tables/table-one-way-function-example-tr.md >}}
@@ -72,3 +75,6 @@ Tersine Çevrilmesi Zordur: Bir çıktı verildiğinde, orijinal girdiyi belirle
 https://statisticsfundamentals.com/calculators/birthday-paradox/
 
 
+### Hash fonksiyon örnekler
+
+{{< include tables/table-hash-functions.md >}}
