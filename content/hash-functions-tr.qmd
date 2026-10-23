@@ -1,5 +1,39 @@
 # Hash Fonksiyonları
 
+## Hash fonksiyonlar demo
+
+### Komut satırı
+
+- linux zaten kurulu gelir
+- shasum
+- sha1sum
+- sha256sum
+- sha512sum
+- sha224sum
+- sha384sum   
+
+windows, powershell kurulum gerektirmeden çalıştırmanızı sağlar
+
+https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash?view=powershell-7.6
+
+	Get-FileHash Deneme.txt -Algorithm SHA384
+	Get-FileHash Deneme.txt -Algorithm SHA384 | Format-List
+
+
+- SHA1
+- SHA256
+- SHA384
+- SHA512
+- MD5
+
+
+### Çevrim içi (Web)
+
+- https://hashgenerator.co/
+- https://emn178.github.io/online-tools/
+
+
+
 ## Tek yön (One way) fonksiyonlar
 
 
