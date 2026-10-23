@@ -72,9 +72,11 @@ Temel Özellikler
 
 ### Doğum günü paradoksu
 
-https://statisticsfundamentals.com/calculators/birthday-paradox/
+https://statistics-fundamentals.com/calculators/birthday-paradox/
 
 
 ### Hash fonksiyon örnekler
 
 {{< include tables/table-hash-functions.md >}}
+
+{{< include tables/table-hash-functions-sha.md >}}
