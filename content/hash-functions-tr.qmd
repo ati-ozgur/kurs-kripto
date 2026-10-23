@@ -1,5 +1,15 @@
 # Hash Fonksiyonları
 
+## Tek yön (One way) fonksiyonlar
+
+
+
+{{< include tables/table-one-way-function-example-tr.md >}}
+
+
+
+
+
 
 {{< include diagrams/hash-functions1.mermaid >}}
 
