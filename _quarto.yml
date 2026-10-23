@@ -17,6 +17,7 @@ book:
     - Hafta01.qmd
     - content/random-numbers.qmd
     - content/simetrik-sifreler.qmd
+    - content/hash-functions-tr.qmd
     - summary.qmd
     - references.qmd
 

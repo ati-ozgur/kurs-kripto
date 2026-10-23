@@ -1,0 +1,8 @@
+# Hash Fonksiyonları
+
+
+{{< include diagrams/hash-functions1.mermaid >}}
+
+
+
+

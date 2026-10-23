@@ -1,0 +1,20 @@
+
+```{mermaid}
+flowchart TD
+    %% Node Definitions
+    A[/Input message variable length/]
+    B[Hash function]
+    C[\Hash digest fixed length\]
+
+    %% Forward Direction
+    A --> B
+    B --> C
+
+    %% One-Way Indicators (Side annotations)
+    Check["✔️"] -->|Allowed| B
+    XMark["❌"] -.->|Not reversible| B
+
+    %% Styling
+    style Check fill:none,stroke:none,color:green
+    style XMark fill:none,stroke:none,color:red
+```
