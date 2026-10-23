@@ -80,3 +80,10 @@ https://statistics-fundamentals.com/calculators/birthday-paradox/
 {{< include tables/table-hash-functions.md >}}
 
 {{< include tables/table-hash-functions-sha.md >}}
+
+
+
+### Common password hashes
+
+https://www.passwordrandom.com/most-popular-passwords
+https://en.wikipedia.org/wiki/List_of_the_most_common_passwords
