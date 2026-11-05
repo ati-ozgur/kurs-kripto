@@ -1,7 +1,20 @@
-# Kimlik doğrulama kodları (Message authentication codes)
+# İleti Kimlik doğrulama kodları (Message authentication codes)
+
+## Web Sunucu Çerez Kimlik Doğrulama
 
 
+![Web Sunucu Çerez Kimlik Doğrulama](images/Gemini-Web-Sunucu-Cerez.jpeg)
+
+
+
+## Bilişim Terimleri Sözlüğü Terimler
+
+-  message authentication code ileti kimlik
+doğrulama kodu
+- hashing (özetlemleme)
 - hash-based message authentication code
 algorithm (özetlem tabanlı ileti kimlik
 doğrulama kodu algoritması)
 - authentication code (doğrulama kodu)
+
+
