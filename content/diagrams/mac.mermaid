@@ -1,0 +1,25 @@
+```{mermaid}
+graph LR
+    subgraph Sender [Sender]
+        direction LR
+        M1["Message"] --> MAC_ALG1["MAC Algorithm"]
+        K1["Key, K"] --> MAC_ALG1
+        MAC_ALG1 --> Transmitted
+        
+        subgraph Transmitted [" "]
+            direction TB
+            M_trans["Message"]
+            MAC_trans["MAC"]
+        end
+    end
+
+    subgraph Receiver [Receiver]
+        direction TB
+        K2["Key, K"] --> MAC_ALG2["MAC Algorithm"]
+        MAC_ALG2 --> MAC_calc["MAC"]
+        MAC_calc --> EQUAL["Equal?"]
+    end
+
+    MAC_trans --> EQUAL
+```
+

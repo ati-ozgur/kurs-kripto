@@ -34,6 +34,9 @@ $$\text{MAC} = \text{MAC-Algoritması}(K, M)$$
 
 ## İş Akışı
 
+{{< include ./diagrams/mac.mermaid >}}
+
+
 
 1. Gönderici ve alıcı önceden paylaştıkları **gizli bir anahtara (secret key)** sahiptir. 
 2. Gönderici, mesaj ve bu gizli anahtarı birleştirerek sabit uzunlukta bir "etiket" (MAC değeri) oluşturur. 
