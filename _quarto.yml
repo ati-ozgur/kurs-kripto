@@ -18,6 +18,7 @@ book:
     - content/random-numbers.qmd
     - content/simetrik-sifreler.qmd
     - content/hash-functions-tr.qmd
+    - content/message-authentication-codes-tr.qmd
     - summary.qmd
     - references.qmd
 

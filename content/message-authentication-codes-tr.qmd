@@ -1,0 +1,7 @@
+# Kimlik doğrulama kodları (Message authentication codes)
+
+
+- hash-based message authentication code
+algorithm (özetlem tabanlı ileti kimlik
+doğrulama kodu algoritması)
+- authentication code (doğrulama kodu)
