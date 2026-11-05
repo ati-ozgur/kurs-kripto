@@ -1,0 +1,22 @@
+
+```{mermaid}
+sequenceDiagram
+    autonumber
+    actor Sender as Gönderici (Ahmet)
+    actor Attacker as Aradaki Saldırgan (Eve / MitM)
+    actor Receiver as Alıcı (Mehmet)
+
+    Note over Sender: 1. Orijinal Mesajı ve Hash'i Üretir
+    Sender->>Sender: Mesaj = "Ahmet'e 100 TL gönder"<br/>Hash = SHA256(Mesaj)
+    
+    Sender-xAttacker: Orijinal İletim (Araya Girildi!)
+    Note over Attacker: 2. Saldırgan Mesajı & Hash'i Değiştirir
+    Attacker->>Attacker: Değiştirilmiş Mesaj = "Eve'e 1000 TL gönder"<br/>Yeni Hash = SHA256(Değiştirilmiş Mesaj)
+
+    Attacker->>Receiver: Değiştirilmiş Mesaj + Yeni Hash
+
+    Note over Receiver: 3. Alıcı Doğrulama Yapar
+    Receiver->>Receiver: Alınan Mesajın Hash'ini Hesaplar:<br/>SHA256("Eve'e 1000 TL gönder") == Yeni Hash
+    
+    Note over Receiver: ❌ Hash Uyuşuyor (Bütünlük Tam)<br/>⚠️ Ama Gönderen Ahmet Değil! (Kimlik Doğrulanamadı)
+```
