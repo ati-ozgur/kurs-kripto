@@ -74,5 +74,5 @@ Hash fonksiyonu yerine blok şifreleme (AES gibi) algoritmalarını kullanarak M
 
 
 
-
+{{< include message-authentication-codes-quiz-tr.md >}}
 
