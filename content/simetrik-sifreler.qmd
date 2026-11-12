@@ -1,4 +1,4 @@
-# Simetrik Şifreler
+# Simetrik Şifreler Giriş
 
 ## Terminoloji
 
@@ -38,5 +38,5 @@ burada
 
 
 
-{{< include stream-cipher.qmd >}}
+
 
