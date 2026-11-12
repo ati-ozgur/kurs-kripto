@@ -16,7 +16,7 @@ book:
     - content/giris.qmd
     - content/random-numbers.qmd
     - content/simetrik-sifreler.qmd
-    - content/stream-cipher.qmd
+#    - content/stream-cipher.qmd
     - content/hash-functions-tr.qmd
     - content/message-authentication-codes-tr.qmd
 #    - summary.qmd
