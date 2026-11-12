@@ -13,8 +13,7 @@ book:
 
   chapters:
     - index.qmd
-    - intro.qmd
-    - Hafta01.qmd
+    - content/giris.qmd
     - content/random-numbers.qmd
     - content/simetrik-sifreler.qmd
     - content/hash-functions-tr.qmd
