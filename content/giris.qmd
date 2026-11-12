@@ -1,6 +1,327 @@
-# Giriş
+# Kriptografiye Giriş
 
-Ders içeriği  [Dan Boneh, Stanford University Online Cryptography Course](https://crypto.stanford.edu/~dabo/courses/OnlineCrypto) sadeleştirilmiş halidir.
+Bu giriş içeriği  [Dan Boneh, Stanford University Online Cryptography Course](https://crypto.stanford.edu/~dabo/courses/OnlineCrypto) dersi [giriş](https://crypto.stanford.edu/~dabo/courses/OnlineCrypto/slides/01-intro-v2-annotated.pdf) yansılarının  sadeleştirilmiş halidir.
 
+
+## Kriptografi her yerde
+
+---
+
+### Kriptografiye Giriş
+
+Kriptografi nedir, nerede kullanılır ve bugüne nasıl geldi?
+
+Bu derste üç soruya cevap arayacağız: 
+1. Kriptografiyi bugün nerelerde kullanıyoruz?
+2. Kriptografi tam olarak neyi çözmeye çalışır?
+3. Tarih boyunca şifreler nasıl kırıldı? 
+
+
+### Her gün farkında olmadan kullanıyoruz
+
+| Alan | Örnekler |
+|---|---|
+| **Web** | HTTPS: tarayıcı ile site arasındaki her bağlantı TLS 1.3 ile korunur |
+| **Mesajlaşma** | WhatsApp ve Signal: uçtan uca şifreleme, sunucu bile okuyamaz |
+| **Kablosuz ağlar** | Wi-Fi (WPA3), 4G/5G mobil şebekeler, Bluetooth |
+| **Disk şifreleme** | BitLocker, FileVault, VeraCrypt; telefonlar varsayılan olarak şifreli |
+| **Kimlik doğrulama** | Passkey’ler, iki adımlı doğrulama, banka kartı çipleri |
+| **İçerik koruma** | Netflix, Spotify, Blu-ray: kopyalamaya karşı DRM |
+
+
+### Güvenli iletişim: HTTPS ve TLS
+
+- **Gizlilik:** kimse dinleyemez
+- **Bütünlük:** kimse değiştiremez
+
+```{mermaid}
+flowchart LR
+    A([Tarayıcı]) --> B["1 · Anahtar değişimi<br/>Asimetrik şifreleme<br/>(açık / gizli anahtar)"]
+    B --> C["Ortak gizli anahtar k"]
+    C --> D["2 · Veri aktarımı<br/>Simetrik şifreleme<br/>(AES, k ile)"]
+    D --> E([Sunucu])
+```
+
+
+
+
+1. **El sıkışma (handshake):** Açık anahtarlı kripto ile ortak gizli anahtar **k** kurulur (dersin 2. kısmı).
+2. **Kayıt katmanı (record layer):** Veriler **k** ile şifrelenir: gizlilik + bütünlük (dersin 1. kısmı).
+
+> TLS iki parçadan oluşur. El sıkışmada taraflar, ağı dinleyen birine rağmen ortak bir gizli anahtar kurar; bu kısım açık anahtarlı kriptografi gerektirir. Kayıt katmanında ise bu anahtarla simetrik şifreleme yapılır. 
+
+
+### Diskte şifreleme
+
+
+Diskteki dosyalar da aynı iki hedefi ister.
+Şifreli bir dosya, bugünkü Ayşe’nin yarınki Ayşe’ye gönderdiği bir mesaj gibidir.
+
+
+> Disk şifreleme örneği: Ayşe’nin bugün yazdığı dosyayı yarın yine Ayşe okur; arada diski çalan biri ne okuyabilmeli ne de fark edilmeden değiştirebilmelidir.
+
+
+### Temel yapı taşı: simetrik şifreleme
+
+```
+        Ayşe                   Bob
+m  →  [ E ]  →  c  →  [ D ]  →  m
+         k                k
+açık metin   şifreli metin   açık metin
+```
+
+- **Algoritma herkese açık:** E ve D bilinir; yalnızca k gizlidir (ör. 128 bit). Gizli, kendinize özel algoritma kullanmayın.
+- **Tek kullanımlık anahtar:** Her mesaj için yeni bir k. Örnek: şifreli e-posta.
+- **Çok kullanımlık anahtar:** Aynı k ile birçok dosya. Örnek: disk şifreleme. Daha fazla mekanizma gerektirir.
+
+- Simetrik şifrelemede aynı k anahtarı hem şifrelemede (E) hem çözmede (D) kullanılır. 
+- Kerckhoffs ilkesi: sistemin güvenliği algoritmanın gizliliğine değil, yalnızca anahtarın gizliliğine dayanmalıdır. 
+- Anahtar tek bir mesaj için kullanılıyorsa işimiz kolaydır; aynı anahtar birçok mesajda kullanılacaksa ek önlemler gerekir. 
+
+### Akılda tutulacaklar
+
+- **Güçlü bir araç:** Birçok güvenlik mekanizmasının temelidir.
+- **Her sorunu çözmez:** Oltalama, zayıf parola ya da ele geçirilmiş bir cihaz karşısında şifreleme tek başına yetmez.
+- **Doğru uygulanmalı:** Heartbleed (2014): algoritmalar sağlamdı, ama OpenSSL’deki bir hata sunucu belleğini sızdırdı.
+- **Kendi şifrenizi icat etmeyin:** Kendi tasarımı şemalar defalarca kırıldı: Wi-Fi’da WEP, DVD’lerde CSS.
+
+Not: Bu konu dersin ana mesajlarından biridir. 
+Kriptografi güçlüdür ama sihirli değnek değildir: kullanıcıyı kandıran bir oltalama sayfasına karşı TLS bir şey yapamaz. 
+Heartbleed, matematiğin sağlam olduğu ama uygulamanın hatalı olduğu klasik bir örnektir. 
+WEP ve DVD’lerdeki CSS ise uzmanlarca incelenmemiş, kendi tasarımı şemaların nasıl kısa sürede kırıldığını gösterir.
+
+
+
+## Kriptografi nedir?
+
+
+### 6. Kriptografinin çekirdeği
+
+```
+Ayşe  ⟷──── k ────⟷  Bob
+            ┆
+            ▼
+        Saldırgan
+```
+
+1. **Gizli anahtar kurma:** Ayşe ile Bob, hat dinlenirken bile ortak bir k üzerinde anlaşır.
+
+2. **Güvenli iletişim:** k ile gönderilen mesajlar gizli kalır ve fark edilmeden değiştirilemez.
+
+
+Kriptografinin çekirdek problemi iki adımdır: 
+
+1. saldırganın her şeyi dinleyebildiği bir kanal üzerinden ortak bir gizli anahtar paylaşmak
+2. Sonra, bu anahtarla hem gizli hem de bütünlüğü korunan iletişim sağlamak. 
+
+Saldırgan yalnızca dinlemekle kalmayıp mesajları değiştirebilir, silebilir veya araya girebilir.
+
+
+### Güvenli iletişimin ötesi
+
+- **Dijital imza:** Kimin imzaladığı ve belgenin değişmediği doğrulanır: e-imza, yazılım güncellemeleri.
+- **Anonim iletişim:** Mix-net’ler ve Tor: kiminle konuştuğunuz gizli kalır.
+- **Anonim dijital para:** Kimliği açıklamadan harcamak, ama çifte harcamayı önlemek. Bitcoin yalnızca takma adlıdır; Zcash daha ileri gider.
+- **Protokoller:** Gizli açık artırma: yalnızca kazanan ve fiyat öğrenilir.
+
+> **Konuşmacı notu:** Kriptografi sadece mesajları şifrelemekten ibaret değildir. 
+Dijital para örneğinde iki zıt hedef vardır: harcayanın kimliği gizli kalmalı, ama aynı parayı iki kez harcamaya kalkan biri yakalanmalıdır. 
+Bitcoin’de tüm işlemler herkese açık olduğundan sistem anonim değil, takma adlıdır.
+ Gizli açık artırmada, örneğin ikinci fiyat açık artırmasında, sadece kazanan ve ödeyeceği fiyat ortaya çıkar; diğer teklifler gizli kalır.
+
+
+
+### Güvenli çok taraflı hesaplama
+
+```
+x1          x2
+   ↘      ↙
+  f(x1, …, x4)
+   ↗      ↖
+x3          x4
+```
+
+- **Örnek:** Dört arkadaş, maaşlarını kimseye söylemeden ortalama maaşı öğrenir.
+- **Teorem:** Güvenilir bir aracıyla yapılabilen her hesaplama, aracı olmadan da yapılabilir.
+- **Gerçek hayatta:** Danimarka’daki şeker pancarı açık artırması (2008) bu yöntemle yapıldı.
+
+> **Konuşmacı notu:** Dört kişinin her biri gizli bir girdiye sahip ve hepsi birlikte bir f fonksiyonunu hesaplamak istiyor: ortalama maaş, bir seçimin sonucu ya da bir açık artırmanın kazananı gibi. 
+Akla gelen ilk çözüm herkesin girdisini güvendiği bir aracıya vermesidir. 
+Kriptografinin şaşırtıcı sonuçlarından biri, aracıya hiç gerek olmadan da aynı sonucun elde edilebileceğidir: taraflar birbiriyle mesajlaşarak f’yi hesaplar, ama kimse diğerlerinin girdisini öğrenmez.
+
+
+
+### 9. Titiz bir bilim: üç adım
+
+1. **Tehdit modelini tanımla:** Saldırgan neler yapabilir, neyi başarırsa sistemi kırmış sayılır?
+2. **Bir yapı öner:** Şifreleme, imza veya protokol için somut bir tasarım.
+3. **Güvenliği ispatla:** Yapıyı bu modelde kırmak, zor olduğu bilinen bir problemi çözmek anlamına gelmeli.
+
+Örnek zor problem: büyük bir **N = p · q** sayısını çarpanlarına ayırmak.
+
+> **Not:** Modern kriptografiyi tarihteki şifrelerden ayıran şey bu yaklaşımdır. 
+Eskiden bir şifre “kimse kıramadığı sürece” güvenli sayılırdı. 
+Bugün ise önce saldırganın gücünü kesin olarak tanımlıyor, sonra bir yapı öneriyor ve bu yapıyı kırmanın, örneğin büyük sayıları çarpanlarına ayırmak gibi, çok iyi incelenmiş zor bir problemi çözmeyi gerektirdiğini ispatlıyoruz.
+
+
+
+## Tarihçe
+
+
+
+### Yerine koyma şifresi ve Sezar şifresi
+
+**Yerine koyma şifresi:** Anahtar, alfabenin bir permütasyonudur:
+
+```
+A B C Ç D E F G Ğ H …
+Z E T H G Y A V M Ü …
+```
+
+**Sezar şifresi:** Her harf 3 ileri kaydırılır. Gizli anahtar yok!
+
+```
+KRİPTOGRAFİ GÜZELDİR
+NTLŞVRITÇHL IZCĞOGLT
+```
+
+| Alfabe | Anahtar uzayı |
+|---|---|
+| İngilizce (26 harf) | 26! ≈ 2⁸⁸ |
+| Türkçe (29 harf) | 29! ≈ 2¹⁰³ |
+
+Anahtar uzayı devasa, **ama şifre yine de kolayca kırılır.**
+
+*Kaynak: D. Kahn, The Codebreakers (1996)*
+
+> **Not:** Tarihteki şifrelerin hepsi kırılmıştır. 
+Yerine koyma şifresinde anahtar, her harfin hangi harfle değiştirileceğini gösteren bir tablodur. 
+Sezar şifresi bunun özel bir hâlidir: alfabe sabit bir miktar kaydırılır, yani ortada gizli bir anahtar yoktur. 
+Örnekte 29 harfli Türk alfabesinde 3 kaydırma kullandık. Öğrencilere sorun: 
+Türkçe için kaç farklı anahtar var? Cevap 29!, yaklaşık 2 üzeri 103. 
+Bu sayı kaba kuvvetle denenemeyecek kadar büyüktür, ama birizdan göreceğimiz gibi şifre çok kolay kırılır. Büyük anahtar uzayı gerekli ama yeterli değildir.
+
+
+
+### Sezar şifresi Java’da
+
+```java
+public class Sezar {
+    static String sifrele(String metin, int k) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : metin.toCharArray()) {
+            if (c >= 'A' && c <= 'Z')
+                sb.append((char) ('A' + (c - 'A' + k) % 26));
+            else if (c >= 'a' && c <= 'z')
+                sb.append((char) ('a' + (c - 'a' + k) % 26));
+            else sb.append(c);  // boşluk ve noktalama aynen kalır
+        }
+        return sb.toString();
+    }
+    static String desifrele(String metin, int k) {
+        return sifrele(metin, 26 - k % 26);
+    }
+    public static void main(String[] args) {
+        String c = sifrele("Kriptografi guzeldir", 3);
+        System.out.println(c);                // Nulswrjudil jxchoglu
+        System.out.println(desifrele(c, 3));  // Kriptografi guzeldir
+    }
+}
+```
+
+- **Harften sayıya:** `c - 'A'` harfi 0–25 arası bir sayıya çevirir.
+- **Başa dönme:** `% 26` sayesinde Z’den sonra yeniden A gelir.
+- **Deşifreleme:** k geri gitmek, 26 − k ileri gitmekle aynıdır.
+- **Sadece ASCII:** Ç, Ğ, Ş gibi Türkçe harfler şifrelenmeden olduğu gibi kalır.
+
+> **Not:** Kod yalnızca İngilizce alfabedeki 26 harfi kaydırır; büyük ve küçük harfler ayrı ele alınır, diğer karakterler değişmeden kopyalanır. 
+Örnekte bu yüzden “güzeldir” yerine “guzeldir” yazdık. 
+k anahtarının 0 ile 25 arasında olduğu varsayılıyor. 
+Deşifreleme ayrı bir algoritma değil: k kadar geri kaydırmak, 26 − k kadar ileri kaydırmakla aynı sonucu verir. 
+
+
+
+### Frekans analiziyle kırmak
+
+**Türkçede en sık harfler**
+
+| Harf | Sıklık |
+|---|---|
+| A | %11,6 |
+| E | %9,4 |
+| İ | %8,6 |
+| R | %6,8 |
+| N | %6,8 |
+| L | %6,1 |
+
+1. **Tek harfler:** Şifreli metindeki en sık harf büyük olasılıkla A’dır.
+2. **İkili ve üçlü gruplar:** Sık görülen kalıplar: **LA, AR, ER, İN**; çoğul ekleri **LAR, LER**.
+3. **Boşlukları doldur:** Çözülen harfler kelimeleri ele verir, gerisi bulmaca gibi gelir.
+
+İngilizcede aynı rolü E, T, A ve THE oynar.
+
+*Harf frekansları: sttmedia.com, “Character Frequency: Turkish”*
+
+**Not:** Yerine koyma şifresi harflerin frekansını korur: açık metinde en sık geçen harf, şifreli metinde de en sık geçen harfe dönüşür. 
+Türkçede A yaklaşık yüzde 11,6 ile açık ara öndedir; ardından E ve noktalı İ gelir. 
+Sadece harfler değil, ikili ve üçlü gruplar da ipucu verir: Türkçede çoğul eki olan -lar ve -ler çok sık görülür. 
+
+
+
+### 13. Vigenère şifresi (16. yüzyıl)
+
+```
+Anahtar        ŞİFREŞİFREŞİFREŞİ
+Açık metin     BUGÜNHAVAÇOKGÜZEL
+Şifreli metin  TFKNSCİÇRĞIUKNDYÜ
+```
+
+c = m + k (mod 29), harfler A = 0, B = 1, …, Z = 28 olarak numaralanır.
+
+1. **Uzunluğu bul:** Anahtar uzunluğu tahmin edilir (burada 5).
+2. **Gruplara ayır:** Her 5. harf aynı kaydırmayı görür: 5 ayrı Sezar şifresi.
+3. **Frekans analizi:** A = 0 olduğundan, bir gruptaki en sık harf doğrudan anahtar harfidir.
+
+**Not:** Vigenère şifresinde anahtar kelime metnin üzerine tekrar tekrar yazılır ve her harf, üstündeki anahtar harfi kadar kaydırılır. 
+Örnek: B (1) + Ş (22) = 23, yani T. Aynı açık metin harfi farklı konumlarda farklı harflere dönüştüğü için basit frekans analizi işe yaramaz. 
+Ama anahtar uzunluğu bilinirse metin 5 gruba ayrılır ve her grup ayrı bir Sezar şifresi olur.
+Türkçede en sık harf A ve A’nın değeri 0 olduğu için, bir gruptaki en sık şifreli harf o grubun anahtar harfini doğrudan verir. 
+Orijinal derste İngilizce için aynı fikir “en sık harf eksi E” olarak anlatılır.
+
+
+
+### Rotor makineleri (1870–1943)
+
+- **Hebern makinesi:** Tek rotor. Her tuşa basıldığında rotor döner, yerine koyma tablosu değişir. Yine de frekans analiziyle kırılır.
+- **Enigma:** 3–5 rotor, II. Dünya Savaşı’nda Alman ordusu. Anahtar sayısı yaklaşık 2³⁶ (tıkaç panosuyla).
+
+**Nasıl kırıldı?**
+
+- **1932:** Polonyalı matematikçi Marian Rejewski Enigma’yı matematiksel olarak çözer.
+- **1940’lar:** Bletchley Park’ta Alan Turing ve ekibi “Bombe” makineleriyle mesajları düzenli olarak çözer.
+
+**Notu:** Rotor makineleri, yerine koyma tablosunu her harften sonra değiştirerek frekans analizini zorlaştırmaya çalıştı. 
+Tek rotorlu Hebern makinesi, rotor 26 harf sonra başa döndüğü için hâlâ frekans analizine açıktı. 
+Enigma birden çok rotor ve tıkaç panosu kullanarak anahtar sayısını yaklaşık 2 üzeri 36’ya çıkardı. 
+Bu, bugünün ölçüsüyle küçük bir sayıdır: modern bir bilgisayar bu kadar anahtarı kısa sürede dener. 
+Rejewski’nin çalışmaları ve Bletchley Park’taki Bombe makineleri, kaba kuvvet ile yapısal zayıflıkları birleştirerek Enigma’yı kırdı.
+
+### Modern dönem: standart şifreler
+
+| Yıl | Şifre | Özellikler |
+|---|---|---|
+| 1977 | **DES** | 2⁵⁶ anahtar, 64 bit blok. 1998’de kaba kuvvetle 56 saatte kırıldı. |
+| 2001 | **AES** | 128, 192 veya 256 bit anahtar, 128 bit blok. Bugünün standardı. |
+| 2008 | **Salsa20 → ChaCha20** | Yazılımda hızlı akış şifresi. TLS 1.3 ve WireGuard’da kullanılır. |
+| 2024 | **Kuantum sonrası** | NIST’in ilk standartları: ML-KEM ve ML-DSA. Kuantum bilgisayarlara karşı açık anahtarlı kripto. |
+
+Tarihin dersi: **gizli tasarım değil, açık ve yıllarca incelenmiş algoritmalar** güvenilirdir.
+
+**Not:** DES, IBM’in tasarımı üzerine 1970’lerde standart hâline geldi; 56 bitlik anahtarı bugün çok kısa kabul edilir. 
+1998’de EFF’nin özel donanımı DES anahtarını yaklaşık 56 saatte buldu. 
+Yerini açık bir yarışmayla seçilen AES aldı. 
+Salsa20 ve onun geliştirilmiş hâli ChaCha20, özellikle AES donanım desteği olmayan cihazlarda hızlıdır. 
+Son olarak, büyük kuantum bilgisayarlar bugünkü açık anahtarlı sistemleri tehdit edeceği için NIST 2024’te ilk kuantum sonrası standartları yayımladı. 
+Ortak ders: güvendiğimiz algoritmaların hepsi açıkça yayımlanmış ve yıllarca saldırıya dayanmıştır.
 
 
