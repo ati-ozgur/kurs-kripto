@@ -31,6 +31,16 @@ format:
       - brand
   pdf:
     documentclass: scrreprt
-
-
+    keep-tex: true
+    papersize: a4
+    geometry:
+      - margin=2.5cm
+    include-in-header:
+      text: |
+        \usepackage[export]{adjustbox}
+        \AtBeginDocument{%
+          \let\origincludegraphics\includegraphics
+          \renewcommand{\includegraphics}[2][]{%
+            \origincludegraphics[#1,max width=\linewidth,max totalheight=0.85\textheight]{#2}}%
+        }
 
