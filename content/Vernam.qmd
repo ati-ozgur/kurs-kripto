@@ -33,7 +33,7 @@
 
 ### Python kod örneği
 
-```{.python include="src/vernam_ornek.py" code-line-numbers="true"}
+```{.python include="content/src/vernam_ornek.py" code-line-numbers="true"}
 ```
 
 
