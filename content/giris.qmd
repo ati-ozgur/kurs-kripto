@@ -34,13 +34,8 @@ Bu derste üç soruya cevap arayacağız:
 - **Gizlilik:** kimse dinleyemez
 - **Bütünlük:** kimse değiştiremez
 
-```{mermaid}
-flowchart LR
-    A([Tarayıcı]) --> B["1 · Anahtar değişimi<br/>Asimetrik şifreleme<br/>(açık / gizli anahtar)"]
-    B --> C["Ortak gizli anahtar k"]
-    C --> D["2 · Veri aktarımı<br/>Simetrik şifreleme<br/>(AES, k ile)"]
-    D --> E([Sunucu])
-```
+{{< include diagrams/https.mermaid >}}
+
 
 
 

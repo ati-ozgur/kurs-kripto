@@ -1,0 +1,8 @@
+
+```{mermaid}
+flowchart TB
+    A([Tarayıcı]) --> B["1 · Anahtar değişimi<br/>Asimetrik şifreleme<br/>(açık / gizli anahtar)"]
+    B --> C["Ortak gizli anahtar k"]
+    C --> D["2 · Veri aktarımı<br/>Simetrik şifreleme<br/>(AES, k ile)"]
+    D --> E([Sunucu])
+```
